@@ -23,11 +23,11 @@ def login():
         if database[name1]!=pwd:
             return render_template('login.html',info='Invalid Password')
         else:
-	         return render_template('indexx.html',name=name1)
+	         return render_template('index.html',name=name1)
 
 @app.route("/")
 def index():
-    return render_template("indexx.html")
+    return render_template("index.html")
 
 @app.route("/about")
 def about():
