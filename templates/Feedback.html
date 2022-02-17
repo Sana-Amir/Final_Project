@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{
 font-family: Arial, Helvetica, sans-serif;
-background-image: url('https://media.istockphoto.com/photos/white-silk-texture-picture-id185231165?k=20&m=185231165&s=170667a&w=0&h=cJlz-OKGW3vqx47GPXH2IUJnDZLONwk0wVB13DPKMl0=');
+background-image: url('https://www.wallpapersales.co.uk/acatalog/T338.jpg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
@@ -56,32 +58,34 @@ input[type=text], select, textarea {
 
 <h3><center><u>Feedback</u></center></h3>
 
-<div class="container">
-  <form action="/action_page.php">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="sweden">None</option>
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-      <option value="sweden">Sweden</option>
-    </select>
-
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
 
-<!--    <input type="submit" value="Submit" ONCLICK="alert('Thank you!')">-->
-  </form>
-      <div class="btn" ONCLICK="alert('Thank you!')"><center>Submit</center></div>
 
-</div>
+    <main>
+        <h2><i>We value your feedback!</i></h2>
 
+        {% if message %}
+            <blockquote>
+                <p>{{ message | safe }}</p>
+            </blockquote>
+        {% endif %}
+
+        <form action="{{ url_for('index') }}" method="post">
+            <p>
+                <b><label for="id-email">Email:</label></b> <br>
+                <input type="email" name="email" required>
+            </p>
+            <p>
+                <b><label for="id-message">Message:</label></b> <br>
+                <textarea name="message" id="id-message" cols="30" rows="5"></textarea>
+            </p>
+
+            <p>
+                <button type="submit">Send</button>
+            </p>
+        </form>
+    </main>
+
+</html>
 </body>
 </html>
