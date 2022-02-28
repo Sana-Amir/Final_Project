@@ -7,7 +7,7 @@
 <style>
 body{
 font-family: Arial, Helvetica, sans-serif;
-background-image: url('https://www.wallpapersales.co.uk/acatalog/T338.jpg');
+background-image: url('https://i.pinimg.com/originals/7d/9a/7a/7d9a7a62e7ec5d5ce9041eec4c9eec8d.jpg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
@@ -62,7 +62,7 @@ input[type=text], select, textarea {
 
 
     <main>
-        <h2><i>We value your feedback!</i></h2>
+
 
         {% if message %}
             <blockquote>
@@ -70,7 +70,7 @@ input[type=text], select, textarea {
             </blockquote>
         {% endif %}
 
-        <form action="{{ url_for('index') }}" method="post">
+        <form action="{{ url_for('Feedback') }}" method="post">
             <p>
                 <b><label for="id-email">Email:</label></b> <br>
                 <input type="email" name="email" required>
@@ -84,6 +84,7 @@ input[type=text], select, textarea {
                 <button type="submit">Send</button>
             </p>
         </form>
+        <h2><i><center>We value your feedback!</center></i></h2>
     </main>
 
 </html>
