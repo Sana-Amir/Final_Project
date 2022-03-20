@@ -97,10 +97,13 @@ def Feedback():
 def Termsconditions():
     return render_template("Terms&conditions.html")
 
+@app.route("/logout")
+def logout():
+    return render_template("login.html")
+
 
 if __name__ == "__main__":
     print(welcome_message)
     app.run()
-
 
 
