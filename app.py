@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
 import pickle
 
@@ -10,6 +10,7 @@ welcome_message = "Hey, Welcome to the journey!".format(application_name, versio
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///register.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLAlchemy(app)
 
 class Register(db.Model):
@@ -20,7 +21,7 @@ class Register(db.Model):
     def __repr__(self):
         return f"Register('{self.email}')"
 
-@app.route('/')
+@app.route('/login')
 def hello_world():
     return render_template("login.html")
 database={'sana@yahoo.com':'123'}
@@ -35,7 +36,7 @@ def login():
         if database[name1]!=pwd:
             return render_template('login.html',info='Invalid Password')
         else:
-            return render_template('index.html',name=name1)
+            return render_template('Feedback.html',name=name1)
 
 @app.route("/")
 def index():
@@ -56,7 +57,8 @@ def register():
         db.session.commit()
         return 'You are Registered!'
 
-    return render_template("register.html")
+    else:
+        return render_template("register.html")
 
 
 

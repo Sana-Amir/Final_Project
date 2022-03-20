@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <title>Terms & Conditions</title>
 <style>
+
+.dropbtn {
+  background-color: #00003f;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #D0E0E3;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #00008c;
+}
         body {
   display: flex;
   justify-content: space-around;
@@ -33,7 +73,7 @@ h2{
   flex-direction: column;
   box-sizing: border-box;
   padding: 1rem;
-  background-color: #fff;
+  background-color: #12adc1;
   width: 768px;
   height: 100%;
   border-radius: 0.25rem;
@@ -86,8 +126,20 @@ h2{
  </style>
 </head>
 <body>
+
 <main class="wrap">
 <section class="container">
+    <div class="dropdown">
+  <button class="dropbtn">Menu</button>
+  <div class="dropdown-content">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="http://127.0.0.1:5000/login">Feedback</a>
+  <a href="http://127.0.0.1:5000/register">Register</a>
+  <a href="http://127.0.0.1:5000/Locate">Locate</a>
+  <a href="http://127.0.0.1:5000/Terms&conditions">Terms & Conditions</a>
+
+  </div>
+</div>
     <div class="container__heading">
       <h2><center><u>Terms & Conditions</u></center></h2>
     </div>
