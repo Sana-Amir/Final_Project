@@ -12,6 +12,8 @@ body {
   background-size: cover;
 
 }
+
+
 </style>
 
 </head>
@@ -19,10 +21,10 @@ body {
 <body>
 
 <center><form action="/form_login" method="post">
-  <h2>Email:</h2><br>
-  <input type="text" name='email'><br><br><br>
-  <h2>Password:</h2><br>
-  <input  name='password' ><br><br><br><br>
+  <h2>Email:</h2>
+  <input type="email" name='email' autocomplete="off"><br><br><br>
+  <h2>Password:</h2>
+  <input  name='password' type="password" autocomplete="off"><br><br><br><br>
 <input type="submit" value="Login">
 </form>
 </center>

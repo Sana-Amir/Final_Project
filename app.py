@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
+import os
 import pickle
 
 application_name = "Tourism"
@@ -39,7 +40,7 @@ class Person(db.Model):
 @app.route('/login')
 def hello_world():
     return render_template("login.html")
-database={'sana@yahoo.com':'123'}
+database={'sana@yahoo.com':'123', 'sanaamir591@yahoo.com':'Laptop123'}
 
 @app.route('/form_login', methods=['POST','GET'])
 def login():
@@ -70,7 +71,8 @@ def register():
         user = Register(email=email, password=password)
         db.session.add(user)
         db.session.commit()
-        return 'You are Registered!'
+        flash('You are Registered!')
+        return render_template("register.html")
 
     else:
         return render_template("register.html")
@@ -100,7 +102,8 @@ def Newsletter():
         person = Person(email=email)
         db.session.add(person)
         db.session.commit()
-        return 'Yay!'
+        flash('Thank you!')
+        return render_template("Newsletter.html")
 
     else:
         return render_template("Newsletter.html")
@@ -131,7 +134,7 @@ def Termsconditions():
 
 @app.route("/logout")
 def logout():
-    return render_template("login.html")
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

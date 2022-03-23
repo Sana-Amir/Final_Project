@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="styles.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 *{
@@ -16,6 +19,10 @@
 	outline: none;
 	box-sizing: border-box;
 	font-family: 'Comfortaa', cursive;
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
 }
 
 body{
@@ -60,6 +67,7 @@ body{
 	border-radius: 5px;
 	border: none;
 	font-weight: bold;
+	min-width: 500px;
 }
 
 .newsletter .fas{
@@ -84,24 +92,106 @@ body{
 	cursor: pointer;
 	text-transform: uppercase;
 }
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
 </style>
 </head>
 <body>
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Menu</button>
+  <div id="myDropdown" class="dropdown-content">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="http://127.0.0.1:5000/login">Feedback</a>
+  <a href="http://127.0.0.1:5000/register">Register</a>
+  <a href="http://127.0.0.1:5000/Locate">Locate</a>
+  <a href="http://127.0.0.1:5000/Terms&conditions">Terms & Conditions</a>
 
-
+  </div>
+ </div>
 
 <div class="wrapper">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+		{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 	<h1>Subscribe to our Newsletter</h1>
 	<p>Receive updates instantly!</p>
 	<form class="Newsletter" action="{{ url_for('Newsletter') }}"  method="post" autocomplete="off">
 	<div class="newsletter">
 		<input type="text" name="email" class="input" placeholder="Enter Your Email...">
 		<i class="fas fa-envelope"></i>
-		<div class="btn" ONCLICK="alert('DONE!')">Subscribe</div>
+
+		<input type="submit" value="Subscribe" class="btn">
 	</div>
-		<div class="msg">{{ msg }}</div>
+
 	</form>
 </div>
+ <script>
+            /* When the user clicks on the button,
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
 
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+        </script>
 </body>
 </html>
