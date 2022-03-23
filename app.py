@@ -9,6 +9,7 @@ welcome_message = "Hey, Welcome to the journey!".format(application_name, versio
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///register.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///newsletter.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLAlchemy(app)
@@ -20,6 +21,20 @@ class Register(db.Model):
 
     def __repr__(self):
         return f"Register('{self.email}')"
+
+#app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///newsletter.db'
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#db = SQLAlchemy(app)
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"Person('{self.email}')"
+
+
 
 @app.route('/login')
 def hello_world():
@@ -67,13 +82,28 @@ def users():
     users = Register.query.all()
     return render_template('users.html', users=users)
 
+@app.route('/persons')
+def persons():
+    persons = Person.query.all()
+    return render_template('persons.html', persons=persons)
+
+
 @app.route("/Locate")
 def Locate():
     return render_template("Locate.html")
 
-@app.route("/Newsletter")
+@app.route("/Newsletter", methods=['GET', 'POST'] )
 def Newsletter():
-    return render_template("Newsletter.html")
+    print(request.method)
+    if request.method == 'POST':
+        email = request.form['email']
+        person = Person(email=email)
+        db.session.add(person)
+        db.session.commit()
+        return 'Yay!'
+
+    else:
+        return render_template("Newsletter.html")
 
 
 @app.route("/Feedback", methods=["GET", "POST"])
@@ -107,5 +137,4 @@ def logout():
 if __name__ == "__main__":
     print(welcome_message)
     app.run()
-
 

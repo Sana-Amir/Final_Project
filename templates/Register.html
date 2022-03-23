@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <title>Register</title>
 <style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
     body {
    font-family: "Raleway", Helvetica, sans-serif;
    font-size: 14px;
@@ -182,6 +207,13 @@ input {
 </style>
 </head>
 <body>
+<ul>
+  <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+  <li><a href="http://127.0.0.1:5000/login">Feedback</a></li>
+  <li><a href="http://127.0.0.1:5000/register">Register</a></li>
+    <li><a href="http://127.0.0.1:5000/Locate">Locate</a></li>
+    <li><a href="http://127.0.0.1:5000/Terms&conditions">Terms & Conditions</a></li>
+</ul>
 <div class="wrap">
    <h1 class="register-title">Welcome</h1>
    <form class="register" action="{{ url_for('register') }}" method="post" autocomplete="off">
@@ -196,6 +228,7 @@ input {
       <input type="submit" value="Create Account" class="register-button" onclick="You are Registered!">
        <br>
        <div class="msg">{{ msg }}</div>
+
    </form>
 </div>
 </body>

@@ -93,11 +93,14 @@ body{
 <div class="wrapper">
 	<h1>Subscribe to our Newsletter</h1>
 	<p>Receive updates instantly!</p>
+	<form class="Newsletter" action="{{ url_for('Newsletter') }}"  method="post" autocomplete="off">
 	<div class="newsletter">
-		<input type="text" class="input" placeholder="Enter Your Email...">
+		<input type="text" name="email" class="input" placeholder="Enter Your Email...">
 		<i class="fas fa-envelope"></i>
 		<div class="btn" ONCLICK="alert('DONE!')">Subscribe</div>
 	</div>
+		<div class="msg">{{ msg }}</div>
+	</form>
 </div>
 
 </body>
